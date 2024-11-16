@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.ade2f5f4.css","mappings":"AAAA,KACE,iBACF","sources":["App.css"],"sourcesContent":["body {\r\n  padding-top: 100px; /* Adjust based on the navbar's height */\r\n}"],"names":[],"sourceRoot":""}

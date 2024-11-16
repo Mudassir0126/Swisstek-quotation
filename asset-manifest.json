@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.js": "/Swisstek-quotaion/static/js/main.ce103434.js",
+    "main.css": "/Swisstek-quotaion/static/css/main.ade2f5f4.css",
+    "main.js": "/Swisstek-quotaion/static/js/main.9905dec8.js",
     "index.html": "/Swisstek-quotaion/index.html",
-    "main.ce103434.js.map": "/Swisstek-quotaion/static/js/main.ce103434.js.map"
+    "main.ade2f5f4.css.map": "/Swisstek-quotaion/static/css/main.ade2f5f4.css.map",
+    "main.9905dec8.js.map": "/Swisstek-quotaion/static/js/main.9905dec8.js.map"
   },
   "entrypoints": [
-    "static/js/main.ce103434.js"
+    "static/css/main.ade2f5f4.css",
+    "static/js/main.9905dec8.js"
   ]
 }
