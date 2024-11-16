@@ -12,102 +12,132 @@ function Dropdown({ value, onChange }) {
 }
 
 function Quotation() {
-  const [inputValue1, setInputValue1] = useState("");
-  const [inputValue2, setInputValue2] = useState("");
-  const [sum, setSum] = useState(0);
+  const [rows, setRows] = useState([
+    { width: "", height: "", designLabel: "", sum: 0 }, // Initial row
+  ]);
 
-  // Effect to update the sum whenever inputValue1 or inputValue2 changes
-  useEffect(() => {
-    const num1 = parseFloat(inputValue1) || 0;
-    const num2 = parseFloat(inputValue2) || 0;
-    setSum(num1 + num2);
-  }, [inputValue1, inputValue2]);
+  const handleInputChange = (index, field, value) => {
+    const updatedRows = [...rows];
+    updatedRows[index][field] = value;
 
-  const handleInputChange1 = (e) => {
-    setInputValue1(e.target.value);
+    if (field === "width" || field === "height") {
+      const width = parseFloat(updatedRows[index].width) || 0;
+      const height = parseFloat(updatedRows[index].height) || 0;
+      updatedRows[index].sum = width * height;
+    }
+
+    setRows(updatedRows);
   };
 
-  const handleInputChange2 = (e) => {
-    setInputValue2(e.target.value);
+  const addRow = () => {
+    setRows([
+      ...rows,
+      { width: "", height: "", designLabel: "", sum: 0 }, // New empty row
+    ]);
   };
 
-  // Cell style for consistent width
+  const firstCellStyle = {
+    width: "100px", // Smaller width for the first column
+    padding: "16px",
+    fontSize: "16px",
+    textAlign: "center",
+    verticalAlign: "middle",
+  };
+
   const cellStyle = {
-    width: "300px",
+    width: "300px", // Default width for other columns
+    padding: "16px",
+    fontSize: "16px",
+    textAlign: "center",
+    verticalAlign: "middle",
   };
 
   return (
     <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }} // Wrapper background
+      className="d-flex justify-content-center"
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#f8f9fa",
+        paddingTop: "10px",
+      }}
     >
       <div className="container text-center">
         <h2 className="mb-4">Schedule</h2>
         <div
           style={{
-            backgroundColor: "#ffffff", // Table background color
+            backgroundColor: "#ffffff",
             padding: "20px",
-            borderRadius: "8px", // Optional: adds rounded corners to the table
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Optional: adds a subtle shadow
+            borderRadius: "8px",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <table className="table table-hover table-bordered">
-            <thead className="table-dark">
-              <tr>
-                <th style={cellStyle}>#</th>
-                <th style={cellStyle}>Width</th>
-                <th style={cellStyle}>Height</th>
-                <th style={cellStyle}>Total Sqft</th>
-                <th style={cellStyle}>Design Label</th>
-                <th style={cellStyle}>Window Colour</th>
-                <th style={cellStyle}>Glass</th>
-                <th style={cellStyle}>Accessories</th>
-                <th style={cellStyle}>Mesh Type</th>
-                <th style={cellStyle}>Frame</th>
-                <th style={cellStyle}>Handle Type</th>
-                <th style={cellStyle}>Handle Colour</th>
-                <th style={cellStyle}>Handle Height</th>
-                <th style={cellStyle}>Opening Direction</th>
-                <th style={cellStyle}>Locking Type</th>
-                <th style={cellStyle}>Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style={cellStyle}>1</td>
-                <td style={cellStyle}>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputValue1}
-                    onChange={handleInputChange1}
-                    placeholder="Enter Width"
-                  />
-                </td>
-                <td style={cellStyle}>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputValue2}
-                    onChange={handleInputChange2}
-                    placeholder="Enter Height"
-                  />
-                </td>
-                <td style={cellStyle}>{sum}</td>
-                <td style={cellStyle}><Dropdown /></td>
-                <td style={cellStyle}><Dropdown /></td>
-                <td style={cellStyle}><Dropdown /></td>
-                <td style={cellStyle}><Dropdown /></td>
-                <td style={cellStyle}><Dropdown /></td>
-                <td style={cellStyle}><Dropdown /></td>
-                <td style={cellStyle}><Dropdown /></td>
-                <td style={cellStyle}><Dropdown /></td>
-                <td style={cellStyle}><Dropdown /></td>
-                <td style={cellStyle}><Dropdown /></td>
-                <td style={cellStyle}><Dropdown /></td>
-              </tr>
-            </tbody>
-          </table>
+          <div
+            style={{
+              overflowX: "auto", // Enable horizontal scrolling for the table only
+            }}
+          >
+            <table
+              className="table table-hover table-bordered"
+              style={{
+                minWidth: "1500px", // Ensure table is wide enough
+                tableLayout: "fixed", // Fix column widths
+              }}
+            >
+              <thead className="table-dark">
+                <tr>
+                  <th style={firstCellStyle}>#</th>
+                  <th style={cellStyle}>Width</th>
+                  <th style={cellStyle}>Height</th>
+                  <th style={cellStyle}>Total Sqft</th>
+                  <th style={cellStyle}>Design Label</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row, index) => (
+                  <tr key={index}>
+                    <td style={firstCellStyle}>{index + 1}</td>
+                    <td style={cellStyle}>
+                      <input
+                        type="number"
+                        className="form-control"
+                        value={row.width}
+                        onChange={(e) =>
+                          handleInputChange(index, "width", e.target.value)
+                        }
+                        placeholder="Enter Width"
+                      />
+                    </td>
+                    <td style={cellStyle}>
+                      <input
+                        type="number"
+                        className="form-control"
+                        value={row.height}
+                        onChange={(e) =>
+                          handleInputChange(index, "height", e.target.value)
+                        }
+                        placeholder="Enter Height"
+                      />
+                    </td>
+                    <td style={cellStyle}>{row.sum}</td>
+                    <td style={cellStyle}>
+                      <Dropdown
+                        value={row.designLabel}
+                        onChange={(e) =>
+                          handleInputChange(index, "designLabel", e.target.value)
+                        }
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <button
+            className="btn btn-primary mt-3"
+            onClick={addRow}
+          >
+            Add Row
+          </button>
         </div>
       </div>
     </div>
