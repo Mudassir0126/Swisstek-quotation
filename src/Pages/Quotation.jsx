@@ -89,7 +89,7 @@ function Quotation() {
                   <th style={cellStyle}>Width</th>
                   <th style={cellStyle}>Height</th>
                   <th style={cellStyle}>Area</th>
-                  <th style={cellStyle}>Design Label</th>
+                  <th style={cellStyle}>Design</th>
                   <th style={cellStyle}>Dropdown 1</th>
                   <th style={cellStyle}>Dropdown 2</th>
                   <th style={cellStyle}>Dropdown 3</th>
