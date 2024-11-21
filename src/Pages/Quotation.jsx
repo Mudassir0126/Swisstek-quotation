@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function Dropdown({ value, onChange }) {
   return (
@@ -13,7 +13,7 @@ function Dropdown({ value, onChange }) {
 
 function Quotation() {
   const [rows, setRows] = useState([
-    { width: "", height: "", designLabel: "", sum: 0 }, // Initial row
+    { width: "", height: "", designLabel: "", dropdown1: "", dropdown2: "", dropdown3: "", dropdown4: "", dropdown5: "", sum: 0 }, // Initial row
   ]);
 
   const handleInputChange = (index, field, value) => {
@@ -32,7 +32,7 @@ function Quotation() {
   const addRow = () => {
     setRows([
       ...rows,
-      { width: "", height: "", designLabel: "", sum: 0 }, // New empty row
+      { width: "", height: "", designLabel: "", dropdown1: "", dropdown2: "", dropdown3: "", dropdown4: "", dropdown5: "", sum: 0 }, // New empty row
     ]);
   };
 
@@ -79,7 +79,7 @@ function Quotation() {
             <table
               className="table table-hover table-bordered"
               style={{
-                minWidth: "1500px", // Ensure table is wide enough
+                minWidth: "1800px", // Ensure table is wide enough
                 tableLayout: "fixed", // Fix column widths
               }}
             >
@@ -90,6 +90,11 @@ function Quotation() {
                   <th style={cellStyle}>Height</th>
                   <th style={cellStyle}>Total Sqft</th>
                   <th style={cellStyle}>Design Label</th>
+                  <th style={cellStyle}>Dropdown 1</th>
+                  <th style={cellStyle}>Dropdown 2</th>
+                  <th style={cellStyle}>Dropdown 3</th>
+                  <th style={cellStyle}>Dropdown 4</th>
+                  <th style={cellStyle}>Dropdown 5</th>
                 </tr>
               </thead>
               <tbody>
@@ -124,6 +129,46 @@ function Quotation() {
                         value={row.designLabel}
                         onChange={(e) =>
                           handleInputChange(index, "designLabel", e.target.value)
+                        }
+                      />
+                    </td>
+                    <td style={cellStyle}>
+                      <Dropdown
+                        value={row.dropdown1}
+                        onChange={(e) =>
+                          handleInputChange(index, "dropdown1", e.target.value)
+                        }
+                      />
+                    </td>
+                    <td style={cellStyle}>
+                      <Dropdown
+                        value={row.dropdown2}
+                        onChange={(e) =>
+                          handleInputChange(index, "dropdown2", e.target.value)
+                        }
+                      />
+                    </td>
+                    <td style={cellStyle}>
+                      <Dropdown
+                        value={row.dropdown3}
+                        onChange={(e) =>
+                          handleInputChange(index, "dropdown3", e.target.value)
+                        }
+                      />
+                    </td>
+                    <td style={cellStyle}>
+                      <Dropdown
+                        value={row.dropdown4}
+                        onChange={(e) =>
+                          handleInputChange(index, "dropdown4", e.target.value)
+                        }
+                      />
+                    </td>
+                    <td style={cellStyle}>
+                      <Dropdown
+                        value={row.dropdown5}
+                        onChange={(e) =>
+                          handleInputChange(index, "dropdown5", e.target.value)
                         }
                       />
                     </td>
