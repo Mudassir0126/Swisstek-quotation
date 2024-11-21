@@ -11,7 +11,7 @@ function App() {
       <div className="container mt-4">
         <Routes>
           <Route path="/" element={<h1>Home Page</h1>} />
-          <Route path="Swisstek-quotaion/quotation" element={<Quotation />} />
+          <Route path="Swisstek-quotation/quotation" element={<Quotation />} />
         </Routes>
       </div>
     </Router>
