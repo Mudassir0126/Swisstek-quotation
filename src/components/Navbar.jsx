@@ -27,7 +27,7 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/quotation">
+              <Link className="nav-link" to="Swisstek-quotaion/quotation">
                 Quotation
               </Link>
             </li>
