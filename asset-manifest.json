@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Swisstek-quotation/static/css/main.ade2f5f4.css",
-    "main.js": "/Swisstek-quotation/static/js/main.9d8b2bb3.js",
+    "main.js": "/Swisstek-quotation/static/js/main.ba79463d.js",
     "index.html": "/Swisstek-quotation/index.html",
     "main.ade2f5f4.css.map": "/Swisstek-quotation/static/css/main.ade2f5f4.css.map",
-    "main.9d8b2bb3.js.map": "/Swisstek-quotation/static/js/main.9d8b2bb3.js.map"
+    "main.ba79463d.js.map": "/Swisstek-quotation/static/js/main.ba79463d.js.map"
   },
   "entrypoints": [
     "static/css/main.ade2f5f4.css",
-    "static/js/main.9d8b2bb3.js"
+    "static/js/main.ba79463d.js"
   ]
 }
