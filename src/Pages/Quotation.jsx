@@ -172,6 +172,14 @@ function Quotation() {
                         }
                       />
                     </td>
+                    <td style={cellStyle}>
+                      <Dropdown
+                        value={row.dropdown5}
+                        onChange={(e) =>
+                          handleInputChange(index, "dropdown5", e.target.value)
+                        }
+                      />
+                    </td>
                   </tr>
                 ))}
               </tbody>
