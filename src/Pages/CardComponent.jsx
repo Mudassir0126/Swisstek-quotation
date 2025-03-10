@@ -8,11 +8,15 @@ const CardComponent = ({ person, index }) => {
       </div>
 
       {/* Display values */}
-      <div className="card-body" style={{ display: "flex", flexDirection: "column", gap: "10px", padding: "4px 2px 4px 8px" }}>
-        <div style={{ display: "flex", gap: "20px" }}>
-          <p style={{ padding: "0" }}>Net Value: {person.NetValue}</p>
-          <p style={{ padding: "0" }}>Gross Value: {person.GrossValue}</p>
-          <p style={{ padding: "0" }}>Total: {person.NetValue + person.GrossValue}</p>
+      <div className="card-body" style={{ display: "flex", flexDirection: "column",  gap: "10px", padding: "4px 2px 4px 8px" }}>
+        <div style={{ display: "flex",justifyContent: "space-between", gap: "20px" }}>
+          <p style={{ padding: "0" }}>Net Value: {person.NetValue || 0}</p>
+          <p style={{ padding: "0" }}>Gross Value: {person.GrossValue || 0}</p>
+          <p style={{ padding: "0" }}>Sales Manager: Ashish</p>
+          <p style={{ padding: "0" }}>Date: 01 jan 2025</p>
+          <p style={{ padding: "0" }}>
+            Total: {(person.NetValue || 0) + (person.GrossValue || 0)}
+          </p>
         </div>
       </div>
 
@@ -31,7 +35,7 @@ const CardComponent = ({ person, index }) => {
               Revisions
             </button>
           </h2>
-          <div id={`collapse-${index}`} className="accordion-collapse collapse" aria-labelledby={`heading-${index}`} data-bs-parent={`#accordion-${index}`}>
+          <div id={`collapse-${index}`} className="accordion-collapse collapse" aria-labelledby={`heading-${index}`}>
             <div className="accordion-body">
               <strong>This is {person.name}'s accordion body.</strong> You can add more details here.
             </div>
