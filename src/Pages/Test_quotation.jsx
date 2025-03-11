@@ -1,30 +1,29 @@
 import React, { useState } from "react";
 import CardComponent from "./CardComponent";
 
-const values = [
-  {
-    name: "Mr. Santosh",
-    NetValue: 10000,
-    GrossValue: 40000,
-    SRM: "Ashish",
-    Date: "11 Jan 2025",
-    revision: {
-      status: true,
-      revisions: [{ GrossValue: 10000, NetValue: 2000 }],
-    },
-  },
-  {
-    name: "Mr. Sachit",
-    NetValue: 17000,
-    GrossValue: 40000,
-    SRM: "Manjunath",
-    Date: "1 Jan 2025",
-    revision: { status: false, revisions: [] },
-  },
-];
-
 const Quotation = () => {
   const [showModal, setShowModal] = useState(false);
+
+  // Convert values array to state
+  const [quotations, setQuotations] = useState([
+    {
+      name: "Mr. Santosh",
+      NetValue: 10000,
+      GrossValue: 40000,
+      SRM: "Ashish",
+      Date: "11 Jan 2025",
+      revision: { status: true, revisions: [{ GrossValue: 10000, NetValue: 2000 }] },
+    },
+    {
+      name: "Mr. Sachit",
+      NetValue: 17000,
+      GrossValue: 40000,
+      SRM: "Manjunath",
+      Date: "1 Jan 2025",
+      revision: { status: false, revisions: [] },
+    },
+  ]);
+
   const [formData, setFormData] = useState({
     name: "",
     NetValue: "",
@@ -33,13 +32,28 @@ const Quotation = () => {
     Date: "",
   });
 
+  // Handle input changes
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("New Quotation:", formData);
+
+    // Create new quotation object with required format
+    const newQuotation = {
+      ...formData,
+      NetValue: parseFloat(formData.NetValue),
+      GrossValue: parseFloat(formData.GrossValue),
+      revision: { status: false, revisions: [] }, // Ensure revision is false with an empty array
+    };
+
+    // Update state with new quotation
+    setQuotations([...quotations, newQuotation]);
+
+    // Reset form and close modal
+    setFormData({ name: "", NetValue: "", GrossValue: "", SRM: "", Date: "" });
     setShowModal(false);
   };
 
@@ -51,7 +65,7 @@ const Quotation = () => {
       </button>
 
       {/* Display Existing Quotations */}
-      {values.map((person, index) => (
+      {quotations.map((person, index) => (
         <CardComponent key={index} person={person} index={index} />
       ))}
 
